@@ -11,12 +11,13 @@ class PopupFour extends Component {
     this.state = {
       startTop: -450,
       startBottom: 120,
-      duration: 1000
+      duration: 1000,
+      opacity: [1, 0, 1]
 
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.start()
     this.animateStart()
   }
@@ -32,7 +33,8 @@ class PopupFour extends Component {
     this.setState({
       startTop: 120,
       startBottom: 650,
-      duration: this.state.duration = 1
+      duration: this.state.duration = 1,
+      opacity: [1, 1, 0]
     });
     this.spin()
     
@@ -60,7 +62,7 @@ class PopupFour extends Component {
           toValue: 1,
           duration,
           easing,
-          delay
+          delay,
         }
       )
     }
@@ -94,6 +96,11 @@ class PopupFour extends Component {
       outputRange: [this.state.startTop, this.state.startBottom]
     })
 
+    const opacity = this.animatedValue.interpolate({
+      inputRange: [0, 0.1, 1],
+      outputRange: this.state.opacity
+    })
+
     const spin = this.spinValue.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '360deg']
@@ -101,7 +108,7 @@ class PopupFour extends Component {
 
     return (
       <View style={styles.container}>
-        <Animated.View style={{ top: introTop, position: 'absolute' }}>
+        <Animated.View style={{ top: introTop, opacity, position: 'absolute' }}>
           <View style={styles.popupBox}>
             <Text style={styles.textStyle}>Hello I'm PopUp</Text>
             <Animated.Image

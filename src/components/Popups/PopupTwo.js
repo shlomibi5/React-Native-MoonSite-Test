@@ -9,7 +9,7 @@ class PopupTwo extends Component {
     seconds: 2,
     startTop: -350,
     startBottom: 120,
-
+    opacity: [1, 0, 1]
 
   }
 
@@ -28,6 +28,7 @@ class PopupTwo extends Component {
     this.setState({
       startTop: 120,
       startBottom: 650,
+      opacity: [1, 0, 1]
     })
     this.resetState();
   }
@@ -85,6 +86,11 @@ class PopupTwo extends Component {
       outputRange: [this.state.startTop, this.state.startBottom]
     })
 
+    const opacity = this.state.animatedValue.interpolate({
+      inputRange: [0, 0.1, 1],
+      outputRange: this.state.opacity
+    })
+
     return (
       <View style={styles.container}>
 
@@ -105,7 +111,7 @@ class PopupTwo extends Component {
           <Text style={{ color: 'white', fontSize: 24 }}>Submit</Text>
         </TouchableHighlight>
 
-        <Animated.View style={{ top: introTop, position: 'absolute' }}>
+        <Animated.View style={{ top: introTop, opacity, position: 'absolute' }}>
           <View style={styles.popupBox}>
             <Text style={styles.textStyle}>Hello I'm PopUp</Text>
             <Text>I will disappear in <Text style={{ color: 'white', fontSize: 20 }}>{this.state.seconds}</Text> seconds</Text>

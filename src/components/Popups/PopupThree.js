@@ -9,7 +9,8 @@ class PopupThree extends Component {
     this.animatedValue = new Animated.Value(0);
     this.state = {
       startTop: -450,
-      startBottom: 120
+      startBottom: 120,
+      opacity: [1, 0, 1]
       
     }
   }
@@ -19,7 +20,8 @@ class PopupThree extends Component {
     this.animateEnd();
     this.setState({
      startTop: 120,
-     startBottom: 650
+     startBottom: 650,
+     opacity: [1, 1, 0]
     })
 }
 
@@ -70,9 +72,14 @@ componentDidMount () {
       outputRange: [this.state.startTop, this.state.startBottom]
     })
 
+    const opacity = this.animatedValue.interpolate({
+      inputRange: [0, 0.1, 1],
+      outputRange: this.state.opacity
+    })
+
     return (
       <View style={styles.container}>      
-        <Animated.View style={{top: introTop, position: 'absolute'}}>
+        <Animated.View style={{top: introTop, opacity, position: 'absolute'}}>
           <View style={styles.popupBox}>
             <Text style={styles.textStyle}>Hello I'm PopUp</Text>    
             <TouchableHighlight onPress={() => {

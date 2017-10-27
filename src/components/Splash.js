@@ -1,5 +1,5 @@
 export default class SplashScreen {
     static load(cd){
-        setTimeout(cd, 4000);
+        setTimeout(cd, 5000);
     }
 }
