@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Easing, Animated, Text, TouchableHighlight, TextInput, View, StyleSheet } from 'react-native';
+import { Easing, Animated, Text, TouchableHighlight, TextInput, Image, View, StyleSheet } from 'react-native';
 
 
 class PopupFour extends Component {
@@ -111,7 +111,7 @@ class PopupFour extends Component {
                 margin: 20,
                 transform: [{ rotate: spin }]
               }}
-              source={{ uri: 'https://lh3.googleusercontent.com/dB3Dvgf3VIglusoGJAfpNUAANhTXW8K9mvIsiIPkhJUAbAKGKJcEMPTf0mkSexzLM5o=w300' }}
+              source={ require ('./square.png') }
             />
             <TouchableHighlight onPress={() => {
               this._onPress()
