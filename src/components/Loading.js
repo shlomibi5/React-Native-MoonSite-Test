@@ -27,8 +27,9 @@ class Loading extends React.Component {
                     marginTop: 50,
                     width: 100,
                     height: 100,
+                    zIndex: 99,
                     borderRadius: 50,
-                    backgroundColor: '#ea571e',
+                    backgroundColor: '#ccc',
                     transform: [
                         {
                             scale: animated
@@ -37,7 +38,7 @@ class Loading extends React.Component {
                 }}
                 ></Animated.View>
                 <Image
-                    style={{ width: '90%', height: 90 }}
+                    style={{ width: '100%', height: 100 }}
                     source={require('../images/logo.png')}
                 />
 
@@ -66,7 +67,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center',
         color: 'white',
-        marginTop: 150
+        marginTop: 100
 
 
     }

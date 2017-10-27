@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Easing, Animated, Text, TouchableHighlight, Image, TextInput, View, StyleSheet } from 'react-native';
+import { Easing, Animated, Text, TouchableHighlight, TextInput, View, StyleSheet } from 'react-native';
 
 
 class PopupFour extends Component {
@@ -7,25 +7,49 @@ class PopupFour extends Component {
   constructor() {
     super()
     this.animatedValue = new Animated.Value(0);
+    this.spinValue = new Animated.Value(0);
     this.state = {
       startTop: -450,
-      startBottom: 150
+      startBottom: 120,
+      duration: 1000
 
     }
   }
 
+  componentDidMount() {
+    this.start()
+    this.animateStart()
+  }
+
+  start() {
+    setTimeout(() => {
+      this.spin();
+    }, 1200);
+  }
 
   _onPress = () => {
     this.animateEnd();
     this.setState({
-      startTop: 150,
-      startBottom: 650
+      startTop: 120,
+      startBottom: 650,
+      duration: this.state.duration = 1
     });
+    this.spin()
+    
   }
 
-  componentDidMount() {
-    this.animateStart()
+  spin() {
+    this.spinValue.setValue(0)
+    Animated.timing(
+      this.spinValue,
+      {
+        toValue: 1,
+        duration: this.state.duration,
+        easing: Easing.linear
+      }
+    ).start(() => this.spin())
   }
+
 
   animateStart() {
     this.animatedValue.setValue(0)
@@ -68,26 +92,27 @@ class PopupFour extends Component {
     const introTop = this.animatedValue.interpolate({
       inputRange: [0, 1],
       outputRange: [this.state.startTop, this.state.startBottom]
-    });
-
-    const interpolateRotation = this.animatedValue.interpolate({
-      inputRange: [0, 1],
-      outputRange: ['0rad', '10rad'],
     })
-    const animatedStyle = {
-      transform: [
-        { rotate: interpolateRotation }
-      ]
-    }
+
+    const spin = this.spinValue.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg']
+    })
 
     return (
       <View style={styles.container}>
         <Animated.View style={{ top: introTop, position: 'absolute' }}>
           <View style={styles.popupBox}>
             <Text style={styles.textStyle}>Hello I'm PopUp</Text>
-            <Animated.View style={[animatedStyle]}>
-              <View style={styles.squareStyle}></View>
-            </Animated.View>
+            <Animated.Image
+              style={{
+                width: 100,
+                height: 100,
+                margin: 20,
+                transform: [{ rotate: spin }]
+              }}
+              source={{ uri: 'https://lh3.googleusercontent.com/dB3Dvgf3VIglusoGJAfpNUAANhTXW8K9mvIsiIPkhJUAbAKGKJcEMPTf0mkSexzLM5o=w300' }}
+            />
             <TouchableHighlight onPress={() => {
               this._onPress()
             }}
@@ -97,6 +122,7 @@ class PopupFour extends Component {
             </TouchableHighlight>
           </View>
         </Animated.View>
+
       </View>
     );
   }
@@ -156,12 +182,6 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.9,
     borderRadius: 10
-  },
-  squareStyle: {
-    width: 100,
-    height: 100,
-    backgroundColor: 'black',
-    margin: 20
   }
 })
 

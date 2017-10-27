@@ -9,7 +9,7 @@ class PopupOne extends Component {
     this.animatedValue = new Animated.Value(0);
     this.state = {
       startTop: -450,
-      startBottom: 150
+      startBottom: 120
     }
   }
   componentDidMount () {
@@ -60,7 +60,7 @@ class PopupOne extends Component {
   setTimePassed() {
      this.animateEnd();
      this.setState({
-      startTop: 150,
+      startTop: 120,
       startBottom: 650
      })
   }

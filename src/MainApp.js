@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Text, TouchableHighlight, View, StyleSheet } from 'react-native';
-import { Header, ButtonOne, ButtonTwo, ButtonThree, ButtonFour } from './components/common';
+import { ButtonOne, ButtonTwo, ButtonThree, ButtonFour } from './components/common';
 
 
 class MainApp extends Component {
