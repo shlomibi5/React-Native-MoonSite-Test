@@ -4,8 +4,8 @@ import { Easing, Animated, Text, TouchableHighlight, View, StyleSheet } from 're
 
 class PopupOne extends Component {
 
-  constructor () {
-    super()        
+  constructor() {
+    super()
     this.animatedValue = new Animated.Value(0);
     this.state = {
       startTop: -450,
@@ -13,12 +13,12 @@ class PopupOne extends Component {
       opacity: [1, 0, 1]
     }
   }
-  componentDidMount () {
+  componentDidMount() {
     this.animateStart()
   }
-  animateStart () {
+  animateStart() {
     this.animatedValue.setValue(0)
-    const createAnimation =  (value, duration, easing, delay = 0) => {
+    const createAnimation = (value, duration, easing, delay = 0) => {
       return Animated.timing(
         value,
         {
@@ -30,13 +30,13 @@ class PopupOne extends Component {
       )
     }
     Animated.parallel([
-      createAnimation(this.animatedValue, 1000, Easing.ease, 100)        
+      createAnimation(this.animatedValue, 1000, Easing.ease, 100)
     ]).start()
   }
 
-  animateEnd () {
+  animateEnd() {
     this.animatedValue.setValue(0)
-    const createAnimation =  (value, duration, easing, delay = 0) => {
+    const createAnimation = (value, duration, easing, delay = 0) => {
       return Animated.timing(
         value,
         {
@@ -48,25 +48,25 @@ class PopupOne extends Component {
       )
     }
     Animated.parallel([
-      createAnimation(this.animatedValue, 1000, Easing.ease, 100)        
+      createAnimation(this.animatedValue, 1000, Easing.ease, 100)
     ]).start()
   }
 
   componentWillMount() {
-    setTimeout( () => {
-       this.setTimePassed();
-    },4000);
+    setTimeout(() => {
+      this.setTimePassed();
+    }, 4000);
   }
-  
+
   setTimePassed() {
-     this.animateEnd();
-     this.setState({
+    this.animateEnd();
+    this.setState({
       startTop: 120,
       startBottom: 650,
       opacity: [1, 1, 0]
-     })
+    })
   }
- 
+
   render() {
     const introTop = this.animatedValue.interpolate({
       inputRange: [0, 1],
@@ -78,7 +78,7 @@ class PopupOne extends Component {
     })
     return (
       <View style={styles.container}>
-        <Animated.View style={{top: introTop, opacity, position: 'absolute'}}>
+        <Animated.View style={{ top: introTop, opacity, position: 'absolute' }}>
           <View style={styles.popupBox}>
             <Text style={styles.textStyle}>Hello I'm PopUp</Text>
             <Text>I will disappear in 3 seconds</Text>
@@ -89,13 +89,13 @@ class PopupOne extends Component {
   }
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
     justifyContent: 'center',
     alignItems: 'center',
-    
+
   },
   textStyle: {
     color: 'white',
@@ -104,7 +104,7 @@ const styles = StyleSheet.create ({
   popupBox: {
     backgroundColor: '#819FF7',
     shadowColor: 'black',
-    shadowOffset: {width: 0, height: 4},
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.9,
     borderRadius: 10,
     justifyContent: 'center',

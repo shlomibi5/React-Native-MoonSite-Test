@@ -28,7 +28,7 @@ const styles = StyleSheet.create ({
 
   textButton: {
     color: 'white',
-    fontSize: 34
+    fontSize: 30
   },
 
   buttonStyle: {

@@ -37,7 +37,7 @@ class PopupFour extends Component {
       opacity: [1, 1, 0]
     });
     this.spin()
-    
+
   }
 
   spin() {
@@ -118,7 +118,7 @@ class PopupFour extends Component {
                 margin: 20,
                 transform: [{ rotate: spin }]
               }}
-              source={ require ('./square.png') }
+              source={require('./square.png')}
             />
             <TouchableHighlight onPress={() => {
               this._onPress()
