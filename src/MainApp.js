@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Text, TouchableHighlight, View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { ButtonOne, ButtonTwo, ButtonThree, ButtonFour } from './components/common';
 
 
@@ -18,4 +18,3 @@ class MainApp extends Component {
 }
 
 export default MainApp;
-//  <Header textHeader="Menu Screen - 4 Buttons" />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Text, View } from 'react-native';
+import { View } from 'react-native';
 import Nav from './Router';
 import SplashScreen from './components/Splash';
 import Loading from './components/Loading';
